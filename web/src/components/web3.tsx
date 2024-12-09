@@ -40,6 +40,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={theme === ThemeType.DARK ? darkStyles : lightStyles}
+          locale="en"
         >
           {children}
         </RainbowKitProvider>
