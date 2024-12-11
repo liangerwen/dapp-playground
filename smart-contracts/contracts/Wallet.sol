@@ -28,8 +28,10 @@ contract Wallet {
         REJECT
     }
 
-    UserWalletStorage private immutable userWalletStorage;
-    WalletTransactionStorage private immutable walletTransactionStorage;
+    UserWalletStorage private userWalletStorage =
+        new UserWalletStorage();
+    WalletTransactionStorage private walletTransactionStorage =
+        new WalletTransactionStorage();
 
     mapping(bytes32 => mapping(address => mapping(bytes32 => ConfirmStatus)))
         private walletTransactionConfirmStatus;
@@ -109,11 +111,6 @@ contract Wallet {
             revert Wallet__TransactionAlreadySent();
         }
         _;
-    }
-
-    constructor() {
-        userWalletStorage = new UserWalletStorage();
-        walletTransactionStorage = new WalletTransactionStorage();
     }
 
     function createWallet(
