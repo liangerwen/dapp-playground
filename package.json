@@ -1,0 +1,32 @@
+{
+  "name": "dapp-playground",
+  "version": "0.0.1",
+  "repository": "https://github.com/liangerwen/dapp-playground.git",
+  "author": "liangerwen",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node ./scripts/dev.ts",
+    "build": "yarn workspace @lew/web build",
+    "start": "yarn workspace @lew/web start",
+    "lint": "yarn workspace @lew/web lint",
+    "deploy": "yarn workspace @lew/smart-contracts deploy",
+    "postinstall": "husky",
+    "precommit": "lint-staged",
+    "commitlint": "commitlint --config commitlint.config.js --edit"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/smart-contracts",
+      "packages/web"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "open": "^10.1.0",
+    "ts-node": "^10.9.2"
+  }
+}

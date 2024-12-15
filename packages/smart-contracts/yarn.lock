@@ -3809,6 +3809,11 @@ open@^7.4.2:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
+openzeppelin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/openzeppelin/-/openzeppelin-1.0.0.tgz#8055cb9a4e2e3914ab937925d1022c83190bf167"
+  integrity sha512-qemLpGK5krO6Wp9mdoaKvzzqAwKsyghJUEyrbue7gdn3PtPJf2gJ910qPFIUgs7ZgRnClseLX/R6bWTsq/TwJQ==
+
 optionator@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.3.tgz#84fa1d036fe9d3c7e21d99884b601167ec8fb495"

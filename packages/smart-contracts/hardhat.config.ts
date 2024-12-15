@@ -40,16 +40,16 @@ const config: HardhatUserConfig = {
         },
       ],
     },
-    holesky: {
-      url: "https://ethereum-holesky-rpc.publicnode.com",
-      accounts: [process.env.PRIVATE_KEY!],
-      chainId: 17000,
-    },
-    sepolia: {
-      url: "https://ethereum-sepolia-rpc.publicnode.com",
-      accounts: [process.env.PRIVATE_KEY!],
-      chainId: 11155111,
-    },
+    // holesky: {
+    //   url: "https://ethereum-holesky-rpc.publicnode.com",
+    //   accounts: [process.env.PRIVATE_KEY!],
+    //   chainId: 17000,
+    // },
+    // sepolia: {
+    //   url: "https://ethereum-sepolia-rpc.publicnode.com",
+    //   accounts: [process.env.PRIVATE_KEY!],
+    //   chainId: 11155111,
+    // },
   },
 };
 
