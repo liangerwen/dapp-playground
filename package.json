@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "ts-node ./scripts/dev.ts",
+    "dev": "yarn workspace @lew/smart-contracts chain && yarn workspace @lew/web dev",
     "build": "yarn workspace @lew/web build",
     "start": "yarn workspace @lew/web start",
     "lint": "yarn workspace @lew/web lint",
@@ -25,8 +25,6 @@
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "open": "^10.1.0",
-    "ts-node": "^10.9.2"
+    "lint-staged": "^15.2.10"
   }
 }

@@ -2,51 +2,48 @@
 
 This is a playground for developing decentralized applications (dapps) using various blockchain technologies.For study use only.
 
-### smart-contracts
+## Requirements
+
+Before you begin, you need to install the following tools:
+
+- [Node (>= v18.18)](https://nodejs.org/en/download/)
+- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
+- [Git](https://git-scm.com/downloads)
+
+## Quickstart
+
+To get started with Dapp playground, follow the steps below:
+
+1. Clone the repository:
 
 ```
-cd smart-contracts
+git clone https://github.com/liangerwen/dapp-playground.git
+```
 
+2. Install dependencies:
+
+```
+cd dapp-playground
 yarn
-
-// dev => copy your contract address
-yarn build:dev
-// holesky => copy your contract address
-yarn build:holesky
-// sepolia => copy your contract address
-yarn build:sepolia
-
-// test
-yarn hardhat test
-
-// configure your wallet private key (need to touch .env file first) => PRIVATE_KEY=0x...
-// holesky => copy your contract address
-yarn build:holesky
-
-// configure your wallet private key (need to touch .env file first) => PRIVATE_KEY=0x...
-// sepolia => copy your contract address
-yarn build:sepolia
-
 ```
 
-### web
+3. Configure your environment variables:
+
+    3.1 Create a `.env` file in the packages/web directory, the example of `.env` file is: `.example.env`
+    3.2 Create a `.env` file in the packages/smart-contracts directory, the example of `.env` file is: `.example.env`
+
+4. Start hardhat network and web app:
 
 ```
-cd web
-
-yarn
-
-// parse your contract address to .env file (need to touch .env file first) => NEXT_PUBLIC_WALLET_HARDHAT_CONTRACT_ADDRESS=0x...  NEXT_PUBLIC_WALLET_HOLESKY_CONTRACT_ADDRESS=0x...  NEXT_PUBLIC_WALLET_SEPOLIA_CONTRACT_ADDRESS=0x...
-// input your project id to .env file (need to touch .env file first & create your project id on https://cloud.walletconnect.com) => NEXT_PUBLIC_PROJECT_ID=...
-
-// dev
-yarn start:dev
-
-// build
-yarn build
-
-// start
-yarn start
+yarn dev
 ```
+
+5. Deploy your smart contract to the hardhat network:
+
+```
+yarn deploy --network localhost
+```
+
+Visit your app on: `http://localhost:3000`.
 
 ### The License is MIT.

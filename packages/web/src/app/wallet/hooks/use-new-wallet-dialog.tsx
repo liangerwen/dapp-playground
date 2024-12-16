@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { abi, getContractAddress } from "../abi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -29,7 +28,7 @@ import { toast } from "@/hooks/use-toast";
 import AmountInput, { parseAmount } from "@/components/amount-input";
 import { createAmountZodSchema } from "../utils";
 import useWriteContract from "@/hooks/use-write-contract";
-import { useAccount } from "wagmi";
+import useContract from "@/hooks/use-contract";
 
 const formSchema = z
   .object({
@@ -56,7 +55,7 @@ const formSchema = z
   });
 
 const useNewWalletDialog = () => {
-  const { chainId } = useAccount();
+  const [contractAddress, abi] = useContract("WalletModule#Wallet");
   const [open, setOpen] = useState(false);
   const writeContract = useWriteContract();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -83,7 +82,7 @@ const useNewWalletDialog = () => {
     return wrap(
       writeContract({
         abi,
-        address: getContractAddress(chainId),
+        address: contractAddress,
         functionName: "createWallet",
         value: parseAmount(values.amount),
         args: [

@@ -3,11 +3,12 @@ import { spawn } from "child_process";
 import { readdirSync, existsSync } from "node:fs";
 import { join } from "path";
 import chalk from "chalk";
+import generateContractsMetadata from "./generate-contracts-metadata";
 
 const MODULE_PATH_PREFIX = "ignition/modules/";
 const NETWORK_ARG_PREFIX = "--network";
 
-async function main() {
+const main = async () => {
   const hasNetworkArg = process.argv.includes(NETWORK_ARG_PREFIX);
   const hasModuleArg =
     process.argv.findIndex((arg) => arg.includes(MODULE_PATH_PREFIX)) >= 0;
@@ -39,7 +40,7 @@ async function main() {
     const errors: string[] = [];
     for (const arg of allArgs) {
       const h = spawn("hardhat", ["ignition", "deploy", ...arg], {
-        // stdio: "inherit",
+        stdio: "inherit",
         env: process.env,
         shell: process.platform === "win32",
       });
@@ -55,7 +56,10 @@ async function main() {
         const message = code === 0 ? "success" : "failed";
         errors.push(color(`Depoly ${message}: ${module} on ${network}`));
         if (errors.length === allArgs.length) {
+          console.log();
           console.log(errors.join("\n"));
+          console.log();
+          generateContractsMetadata().finally(() => process.exit(0));
         }
       });
     }
@@ -63,6 +67,6 @@ async function main() {
     console.error(e);
     process.exit(1);
   }
-}
+};
 
 main();

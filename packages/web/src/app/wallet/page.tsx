@@ -17,7 +17,6 @@ import {
   useReadContract,
   useWatchContractEvent,
 } from "wagmi";
-import { abi, getContractAddress } from "./abi";
 import { useEffect } from "react";
 import type { Wallet, WalletCreatedArgs } from "./interface";
 import { formatObjFromSolidity } from "@/lib/utils";
@@ -31,9 +30,11 @@ import { Label } from "@/components/ui/label";
 import useHistorySheet from "./hooks/use-history-sheet";
 import Loading from "@/components/loading";
 import { formatEther } from "viem";
+import useContract from "@/hooks/use-contract";
 
 const WalletPage = () => {
   const { address, chainId, isConnecting, isReconnecting } = useAccount();
+  const [contractAddress, abi] = useContract("WalletModule#Wallet");
   const config = useConfig();
   const { openConnectModal } = useConnectModal();
   const {
@@ -42,7 +43,7 @@ const WalletPage = () => {
     isLoading,
   } = useReadContract({
     abi,
-    address: getContractAddress(chainId),
+    address: contractAddress,
     functionName: "getUserWallets",
     account: address,
     query: {
@@ -53,7 +54,7 @@ const WalletPage = () => {
   const wallets = formatObjFromSolidity<Wallet[]>(data ?? []);
 
   useWatchContractEvent({
-    address: getContractAddress(chainId),
+    address: contractAddress,
     abi,
     onLogs(logs) {
       logs.forEach((log) => {

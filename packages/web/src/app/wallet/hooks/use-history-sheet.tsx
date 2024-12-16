@@ -7,7 +7,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useToast } from "@/hooks/use-toast";
-import { abi, getContractAddress } from "../abi";
 import { formatObjFromSolidity } from "@/lib/utils";
 import { TabsContent, TabsList, Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -34,6 +33,7 @@ import { TransactionStatusLabel } from "../constants";
 import { TextSearch } from "lucide-react";
 import useWriteContract from "@/hooks/use-write-contract";
 import useListenStatus from "./use-listen-status";
+import useContract from "@/hooks/use-contract";
 
 /**
  * TODO:
@@ -42,17 +42,17 @@ import useListenStatus from "./use-listen-status";
  */
 
 const useHistorySheet = () => {
-  const { chainId } = useAccount();
   const [open, setOpen] = useState(false);
   const walletIdRef = useRef<string>();
   const { address } = useAccount();
+  const [contractAddress, abi] = useContract("WalletModule#Wallet");
   const {
     data: transactionHistory,
     refetch: refetchTransactionHistory,
     isLoading: loadingTransactionHistory,
   } = useReadContract({
     abi,
-    address: getContractAddress(chainId),
+    address: contractAddress,
     functionName: "getWalletTransactions",
     account: address,
     query: {
@@ -66,7 +66,7 @@ const useHistorySheet = () => {
     isLoading: loadingDepositHistory,
   } = useReadContract({
     abi,
-    address: getContractAddress(chainId),
+    address: contractAddress,
     functionName: "getWalletDeposits",
     account: address,
     query: {
@@ -150,7 +150,7 @@ const useHistorySheet = () => {
                 wrap(
                   writeContract({
                     abi,
-                    address: getContractAddress(chainId),
+                    address: contractAddress,
                     functionName: "sendTransaction",
                     args: [
                       walletIdRef.current as `0x${string}`,
@@ -173,7 +173,7 @@ const useHistorySheet = () => {
                 wrap(
                   writeContract({
                     abi,
-                    address: getContractAddress(chainId),
+                    address: contractAddress,
                     functionName: "cancelTransaction",
                     args: [
                       walletIdRef.current as `0x${string}`,
@@ -208,7 +208,7 @@ const useHistorySheet = () => {
               wrap(
                 writeContract({
                   abi,
-                  address: getContractAddress(chainId),
+                  address: contractAddress,
                   functionName: "confirmTransaction",
                   args: [
                     walletIdRef.current as `0x${string}`,
@@ -238,7 +238,7 @@ const useHistorySheet = () => {
               wrap(
                 writeContract({
                   abi,
-                  address: getContractAddress(chainId),
+                  address: contractAddress,
                   functionName: "confirmTransaction",
                   args: [
                     walletIdRef.current as `0x${string}`,
