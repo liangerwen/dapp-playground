@@ -38,6 +38,6 @@
     "typescript": ">=4.5.0"
   },
   "dependencies": {
-    "openzeppelin": "^1.0.0"
+    "@openzeppelin/contracts": "^5.0.0"
   }
 }
