@@ -14,9 +14,9 @@ import {
   hardhat,
   holesky,
 } from "viem/chains";
-import { useTheme } from "./theme";
-import { ThemeType } from "./theme";
 import { WEB_TITLE } from "@/constants";
+import { useTheme } from "next-themes";
+import { ThemeType } from "@/constants/theme";
 
 const config = getDefaultConfig({
   appName: WEB_TITLE,
@@ -34,12 +34,12 @@ const darkStyles = darkTheme();
 const lightStyles = lightTheme();
 
 export function Web3Provider({ children }: { children: React.ReactNode }) {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-          theme={theme === ThemeType.DARK ? darkStyles : lightStyles}
+          theme={resolvedTheme === ThemeType.DARK ? darkStyles : lightStyles}
           locale="en"
         >
           {children}

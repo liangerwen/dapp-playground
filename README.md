@@ -29,8 +29,8 @@ yarn
 
 3. Configure your environment variables:
 
-    3.1 Create a `.env` file in the packages/web directory, the example of `.env` file is: `.example.env`
-    3.2 Create a `.env` file in the packages/smart-contracts directory, the example of `.env` file is: `.example.env`
+    3.1 Create a `.env` file in the packages/web directory, the example of `.env` file is: `.env.example`
+    3.2 Create a `.env` file in the packages/smart-contracts directory, the example of `.env` file is: `.env.example`
 
 4. Start hardhat network and web app:
 

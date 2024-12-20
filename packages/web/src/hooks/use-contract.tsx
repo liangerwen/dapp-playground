@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 const useContract = (name: ContractName) => {
   const { chainId } = useAccount();
   const contract = contracts?.[chainId as ChainId]?.[name];
-  return [contract?.address, contract?.abi] as const;
+  return [contract?.address, contract?.abi, contract?.inheritedFunctions] as const;
 };
 
 export default useContract;

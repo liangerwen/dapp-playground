@@ -3,13 +3,13 @@
  * You should not edit it manually or your changes might be overwritten.
  */
 
-export type ContractName = "WalletModule#Wallet";
+export type ContractName = "Wallet";
 
 export type ChainId = 11155111 | 17000 | 31337;
 
 export default {
   "17000": {
-    "WalletModule#Wallet": {
+    "Wallet": {
       "address": "0xc76D8178D3cA360B3A8D0bb643a963f4e5df2340",
       "abi": [
         {
@@ -588,12 +588,13 @@ export default {
           "stateMutability": "nonpayable",
           "type": "function"
         }
-      ]
+      ],
+      "inheritedFunctions": {}
     }
   },
   "31337": {
-    "WalletModule#Wallet": {
-      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "Wallet": {
+      "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
       "abi": [
         {
           "inputs": [],
@@ -1151,6 +1152,35 @@ export default {
         {
           "inputs": [
             {
+              "internalType": "uint256",
+              "name": "_tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_salePrice",
+              "type": "uint256"
+            }
+          ],
+          "name": "royaltyInfo",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "bytes32",
               "name": "_walletId",
               "type": "bytes32"
@@ -1165,12 +1195,35 @@ export default {
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+            }
+          ],
+          "name": "supportsInterface",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         }
-      ]
+      ],
+      "inheritedFunctions": {
+        "royaltyInfo": "@openzeppelin/contracts/token/common/ERC2981.sol",
+        "supportsInterface": "@openzeppelin/contracts/token/common/ERC2981.sol"
+      }
     }
   },
   "11155111": {
-    "WalletModule#Wallet": {
+    "Wallet": {
       "address": "0x76E07996D32683F54A319Cf7B0C937Bc5362529a",
       "abi": [
         {
@@ -1749,7 +1802,8 @@ export default {
           "stateMutability": "nonpayable",
           "type": "function"
         }
-      ]
+      ],
+      "inheritedFunctions": {}
     }
   }
 } as const;

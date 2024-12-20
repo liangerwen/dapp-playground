@@ -1,1 +1,1 @@
-export const WEB_TITLE = "liangerwen's☻DApp";
+export const WEB_TITLE = "liangerwen's☻dapp";

@@ -59,9 +59,9 @@ const InputList = forwardRef(
             size="sm"
             className="w-full"
             onClick={() => {
-              if (innerValue.includes("")) {
+              if (!innerValue.includes("")) {
+                onChange?.(["", ...innerValue]);
               }
-              onChange?.(["", ...innerValue]);
             }}
           >
             <Plus />
