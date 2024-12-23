@@ -37,7 +37,7 @@ const formSchema = z.object({
 });
 
 const useRequestTransactionDialog = () => {
-  const [contractAddress, abi] = useContract("WalletModule#Wallet");
+  const [contractAddress, abi] = useContract("Wallet");
   const [open, setOpen] = useState(false);
   const walletIdRef = useRef<string>();
   const writeContract = useWriteContract();

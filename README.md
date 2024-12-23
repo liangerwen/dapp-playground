@@ -46,4 +46,8 @@ yarn deploy --network localhost
 
 Visit your app on: `http://localhost:3000`.
 
+### Thanks
+
+Thanks to the [[scaffold-eth-2](https://github.com/scaffold-eth/scaffold-eth-2)] repository for providing the inspiration and ideas.
+
 ### The License is MIT.

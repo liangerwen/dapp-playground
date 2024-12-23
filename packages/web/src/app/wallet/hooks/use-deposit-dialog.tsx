@@ -35,7 +35,7 @@ const useDepositDialog = () => {
   const [open, setOpen] = useState(false);
   const walletIdRef = useRef<string>();
   const writeContract = useWriteContract();
-  const [contractAddress, abi] = useContract("WalletModule#Wallet");
+  const [contractAddress, abi] = useContract("Wallet");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

@@ -2,7 +2,7 @@
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ThemeSwitch from "./theme-switch";
-import { WEB_TITLE } from "@/constants";
+import { __DEV__, WEB_TITLE } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -25,7 +25,18 @@ const Nav = () => {
       key: "wallet",
       title: "Wallet",
     },
+    {
+      key: "nft",
+      title: "NFT",
+    },
   ];
+
+  if (__DEV__) {
+    routes.push({
+      key: "__dev",
+      title: "Dev",
+    });
+  }
 
   return (
     <nav className="w-full h-16 flex items-center px-5 bg-background shadow-sm">

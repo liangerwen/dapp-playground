@@ -34,7 +34,7 @@ import useContract from "@/hooks/use-contract";
 
 const WalletPage = () => {
   const { address, chainId, isConnecting, isReconnecting } = useAccount();
-  const [contractAddress, abi] = useContract("WalletModule#Wallet");
+  const [contractAddress, abi] = useContract("Wallet");
   const config = useConfig();
   const { openConnectModal } = useConnectModal();
   const {

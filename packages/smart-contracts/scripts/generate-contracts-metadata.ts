@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { readFileSync, readdirSync, existsSync, writeFileSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
+import { join, resolve } from "node:path";
 
 const getContractName = (path: string) => path.split(".json")[0];
 
@@ -14,7 +14,6 @@ function getActualSourcesForContract(
     if (sourceName === contractName) {
       const regex = /contract\s+(\w+)\s+is\s+([^{}]+)\{/;
       const match = content.match(regex);
-
       if (match) {
         const inheritancePart = match[2];
         // Split the inherited contracts by commas to get the list of inherited contracts
@@ -50,8 +49,9 @@ function getInheritedFunctions(
       const sourceName = sourcePath?.split("/").pop()?.split(".sol")[0];
       const { abi } = JSON.parse(
         readFileSync(
-          join(process.cwd(), "artifacts", sourcePath, `${sourceName}.json`)
-        ).toString()
+          join(process.cwd(), "artifacts", sourcePath, `${sourceName}.json`),
+          "utf8"
+        )
       );
       for (const functionAbi of abi) {
         if (functionAbi.type === "function") {
@@ -93,7 +93,7 @@ const generateContractsMetadata = async () => {
       const data = contracts.reduce<Record<string, any>>((acc, cur) => {
         const name = getContractName(cur);
         const buildInfoPath = JSON.parse(
-          readFileSync(join(artifactsPath, `${name}.dbg.json`), "utf-8")
+          readFileSync(join(artifactsPath, `${name}.dbg.json`), "utf8")
         ).buildInfo.replace(/\\/g, "/");
         const { abi, sourceName, contractName } = JSON.parse(
           readFileSync(join(artifactsPath, cur), "utf8")

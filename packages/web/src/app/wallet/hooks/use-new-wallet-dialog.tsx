@@ -55,7 +55,7 @@ const formSchema = z
   });
 
 const useNewWalletDialog = () => {
-  const [contractAddress, abi] = useContract("WalletModule#Wallet");
+  const [contractAddress, abi] = useContract("Wallet");
   const [open, setOpen] = useState(false);
   const writeContract = useWriteContract();
   const form = useForm<z.infer<typeof formSchema>>({

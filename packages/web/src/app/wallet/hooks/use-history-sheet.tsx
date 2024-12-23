@@ -35,17 +35,11 @@ import useWriteContract from "@/hooks/use-write-contract";
 import useListenStatus from "./use-listen-status";
 import useContract from "@/hooks/use-contract";
 
-/**
- * TODO:
- * 1. transations & deposits styles
- * 2. comfirm transation
- */
-
 const useHistorySheet = () => {
   const [open, setOpen] = useState(false);
   const walletIdRef = useRef<string>();
   const { address } = useAccount();
-  const [contractAddress, abi] = useContract("WalletModule#Wallet");
+  const [contractAddress, abi] = useContract("Wallet");
   const {
     data: transactionHistory,
     refetch: refetchTransactionHistory,

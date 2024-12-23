@@ -14,7 +14,7 @@ import {
   hardhat,
   holesky,
 } from "viem/chains";
-import { WEB_TITLE } from "@/constants";
+import { __DEV__, WEB_TITLE } from "@/constants";
 import { useTheme } from "next-themes";
 import { ThemeType } from "@/constants/theme";
 
@@ -24,7 +24,7 @@ const config = getDefaultConfig({
   chains: [
     sepolia,
     holesky,
-    ...(process.env.NODE_ENV === "development" ? [hardhat] : []),
+    ...(__DEV__ ? [hardhat] : []),
   ],
   ssr: true,
 });
