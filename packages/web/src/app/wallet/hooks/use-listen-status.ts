@@ -19,7 +19,6 @@ const useListenStatus = ({
         return res;
       })
       .catch((err) => {
-        console.log(Object.entries(err), "pxl");
         errorCallbackRef.current(err);
         throw err;
       });

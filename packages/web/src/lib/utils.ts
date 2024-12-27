@@ -25,6 +25,9 @@ export const formatEnum = (e: bigint) => {
 export const isPlainObject = (obj: unknown): obj is object =>
   Object.prototype.toString.call(obj) === "[object Object]";
 
+export const getTypeof = (obj: unknown) =>
+  Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+
 export const formatObjFromSolidity = <T = any>(obj: any): T => {
   if (Array.isArray(obj)) {
     return obj.map((v) => formatObjFromSolidity(v)) as T;

@@ -12,7 +12,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(168,168,168);
+  background-color: rgb(168, 168, 168);
   border-radius: 0.125rem;
 }
 
@@ -90,4 +90,11 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.react-json-view *,
+::before,
+::after {
+  box-sizing: initial;
+  line-height: initial;
 }
