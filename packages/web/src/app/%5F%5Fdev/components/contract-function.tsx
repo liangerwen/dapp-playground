@@ -1,3 +1,5 @@
+"use client";
+
 import Tooltip from "@/components/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,10 +10,14 @@ import { isPlainObject, getTypeof } from "@/lib/utils";
 import { CircleHelp } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRef, useState } from "react";
-import ReactJson from "react-json-view";
 import { AbiParameter } from "viem";
 import { useContractConfig } from "./contract-config-provider";
 import { readContract } from "viem/actions";
+import dynamic from "next/dynamic";
+
+const ReactJson = dynamic(() => import("react-json-view"), {
+  ssr: false,
+});
 
 // bytesxxx toBytes(xxx).length === xxx
 // address 0x1234567890abcdef1234567890abcdef12345678
@@ -72,7 +78,7 @@ const ContractFunction = ({
   const { address, abi } = useContractConfig();
   const writeContract = useWriteContract();
 
-  const [outputs, setOutputs] = useState(null);
+  const [outputs, setOutputs] = useState<string | null>(null);
 
   const jsonInputRef = useRef<{ state: { src: object | any[] } } | null>(null);
 
