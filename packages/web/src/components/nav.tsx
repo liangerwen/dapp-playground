@@ -25,10 +25,10 @@ const Nav = () => {
       key: "wallet",
       title: "Wallet",
     },
-    {
-      key: "nft",
-      title: "NFT",
-    },
+    // {
+    //   key: "nft",
+    //   title: "NFT",
+    // },
   ];
 
   if (__DEV__) {
